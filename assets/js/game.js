@@ -18,12 +18,12 @@ var fight = function(enemyName) {
   
         if (confirmSkip) {
           window.alert(playerName + ' has decided to skip this fight. Goodbye!');
-          playerMoney = playerMoney - 10;
+          playerMoney = Math.max(0, playerMoney - 10);
           console.log("playerMoney", playerMoney);
           break;
         }
       }
-      enemyHealth = enemyHealth - playerAttack;
+      enemyHealth = randomNumber(40, 60);
       console.log(
         playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
       );
@@ -36,7 +36,7 @@ var fight = function(enemyName) {
         window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
       }
   
-      playerHealth = playerHealth - enemyAttack;
+      playerHealth = Math.max(0, playerHealth - enemyAttack);
       console.log(
         enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
       );
@@ -59,7 +59,7 @@ var startGame = function() {
     if (playerHealth > 0) {
       window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
       var pickedEnemyName = enemyNames[i];
-      enemyHealth = 50;
+      enemyHealth = Math.floor(Math.random() * 21) + 40;
       fight(pickedEnemyName);
     if (playerHealth > 0 && i < enemyNames.length - 1) {
         var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
